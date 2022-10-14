@@ -282,13 +282,6 @@ nmap <Leader>du :Docker compose up<CR>
 nmap <Leader>ds :Docker compose stop<CR>
 nmap <Leader>drs :Docker compose restart<CR>
 
-" bufferBar
-" Plug 'kyazdani42/nvim-web-devicons'
-" Plug 'romgrk/barbar.nvim'
-nmap <Leader>[ :bprevious<CR>
-nmap <Leader>] :bnext<CR>
-nmap <Leader>bd :bd<CR>
-
 Plug 'feline-nvim/feline.nvim'
 
 "配色方案
@@ -348,6 +341,8 @@ require("which-key").setup {
     -- refer to the configuration section below
 }
 
+require("telescope").setup{}
+
 require('telescope').load_extension('lazygit')
 
 require("nvim-tree").setup()
@@ -363,9 +358,12 @@ EOF
 
 
 " telescope
-nmap <leader>f :Telescope <cr>
+nmap <Leader>f :Telescope<CR>
+nmap fgit :Telescope lazygit<CR>
 " nvim-tree
 nmap ww :NvimTreeToggle<CR>
+
+autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
 
 "==============================================================================
 " 主題配色 
