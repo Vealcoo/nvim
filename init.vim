@@ -10,8 +10,6 @@
 
 " set nowrap
 
-set autoread
-
 " 關閉相容模式
 set nocompatible
 
@@ -126,11 +124,11 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 
 " Vim狀態列外掛，包括顯示行號，列號，檔案型別，檔名，以及Git狀態
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='onedark'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+" let g:airline#extensions#tabline#formatter = 'unique_tail'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline_theme='onedark'
 
 
 " 有道詞典線上翻譯
@@ -283,8 +281,6 @@ nmap <Leader>du :Docker compose up<CR>
 nmap <Leader>ds :Docker compose stop<CR>
 nmap <Leader>drs :Docker compose restart<CR>
 
-Plug 'feline-nvim/feline.nvim'
-
 "配色方案
 " colorscheme neodark
 Plug 'KeitaNakamura/neodark.vim'
@@ -323,8 +319,8 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 " lazygit (depend on telescope.nvim)
 Plug 'kdheepak/lazygit.nvim'
 " bufferline
-" Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' } TODO: fix it
-Plug 'romgrk/barbar.nvim'
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+" Plug 'romgrk/barbar.nvim'
 " nvim-tree
 Plug 'kyazdani42/nvim-tree.lua'
 " 縮排指示線
