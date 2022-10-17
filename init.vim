@@ -197,7 +197,7 @@ nmap xx <Plug>(ale_next_wrap)
 nmap <Leader>e :ALEToggle<CR>
 "<Leader>d檢視錯誤或警告的詳細資訊
 nmap <Leader>d :ALEDetail<CR>
-nmap dd :ALEHover<CR>
+nmap <Leader>dd :ALEHover<CR>
 
 " Plug 'scrooloose/syntastic'
 
@@ -306,6 +306,8 @@ Plug 'sheerun/vim-wombat-scheme'
 Plug 'ayu-theme/ayu-vim'
 " colorscheme kolor
 Plug 'zeis/vim-kolor'
+" colorscheme doom-one
+Plug 'romgrk/doom-one.vim'
 
 " lua base --------------------------------------------------------------------
 " status line
@@ -321,15 +323,23 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 " lazygit (depend on telescope.nvim)
 Plug 'kdheepak/lazygit.nvim'
 " bufferline
-Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+" Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' } TODO: fix it
+Plug 'romgrk/barbar.nvim'
 " nvim-tree
 Plug 'kyazdani42/nvim-tree.lua'
 " 縮排指示線
 Plug 'lukas-reineke/indent-blankline.nvim'
 " 突出顯示 & 套件相依接口
 Plug 'nvim-treesitter/nvim-treesitter'
+" Shows git diff
+Plug 'sindrets/diffview.nvim'
+" nice cursor line
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
-
+let g:VM_mouse_mappings = 1
+nmap   <C-LeftMouse>         <Plug>(VM-Mouse-Cursor)
+nmap   <C-RightMouse>        <Plug>(VM-Mouse-Word)  
+nmap   <M-C-RightMouse>      <Plug>(VM-Mouse-Column)
 
 call plug#end()
 
@@ -350,7 +360,19 @@ require("telescope").load_extension("lazygit")
 
 require("nvim-tree").setup()
 
-require("bufferline").setup{}
+require('bufferline').setup ({
+    options = {
+        separator_style = "slant",
+        show_buffer_close_icons = true,
+        view = "multiwindow",
+		offsets = {{
+            filetype = "NvimTree",
+            text = "File Explorer",
+            highlight = "Directory",
+            text_align = "left"
+        }}
+    }
+})
 
 require("indent_blankline").setup {
     -- for example, context is off by default, use this to turn it on
@@ -359,7 +381,7 @@ require("indent_blankline").setup {
 }
 
 require("nvim-treesitter.configs").setup {
-	-- :TSInstall <language_to_install>
+  -- :TSInstall <language_to_install>
   -- :TSInstallInfo
   ensure_installed = {"vim", "go", "lua"},
   -- highlight
@@ -379,7 +401,6 @@ require("nvim-treesitter.configs").setup {
 }
 EOF
 
-
 " telescope
 nmap <Leader>f :Telescope<CR>
 nmap fgit :Telescope lazygit<CR>
@@ -394,7 +415,7 @@ autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
 
 " 配色方案, 可以從上面外掛安裝中的選擇一個使用 
 let g:rehash256 = 1
-colorscheme monokai " 主題
+colorscheme kolor " 主題
 
 set background=dark " 主題背景 dark-深色; light-淺色
 
