@@ -34,6 +34,7 @@ nmap d "_d
 " 文件被修改時自動重新讀取
 set autoread
 " 設定行號
+set relativenumber
 set nu 
 "突出顯示當前行
 set cursorline 
@@ -306,7 +307,7 @@ Plug 'ayu-theme/ayu-vim'
 " colorscheme kolor
 Plug 'zeis/vim-kolor'
 
-" lua base
+" lua base --------------------------------------------------------------------
 " status line
 Plug 'nvim-lualine/lualine.nvim'
 " If you want to have icons in your statusline choose one of these
@@ -325,6 +326,8 @@ Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 Plug 'kyazdani42/nvim-tree.lua'
 " 縮排指示線
 Plug 'lukas-reineke/indent-blankline.nvim'
+" 突出顯示 & 套件相依接口
+Plug 'nvim-treesitter/nvim-treesitter'
 
 
 
@@ -343,7 +346,7 @@ require("which-key").setup {
 
 require("telescope").setup{}
 
-require('telescope').load_extension('lazygit')
+require("telescope").load_extension("lazygit")
 
 require("nvim-tree").setup()
 
@@ -353,6 +356,26 @@ require("indent_blankline").setup {
     -- for example, context is off by default, use this to turn it on
     show_current_context = true,
     show_current_context_start = true,
+}
+
+require("nvim-treesitter.configs").setup {
+	-- :TSInstall <language_to_install>
+  -- :TSInstallInfo
+  ensure_installed = {"vim", "go", "lua"},
+  -- highlight
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = '<CR>',
+      node_incremental = '<CR>',
+      node_decremental = '<BS>',
+      scope_incremental = '<TAB>',
+    }
+ }
 }
 EOF
 
