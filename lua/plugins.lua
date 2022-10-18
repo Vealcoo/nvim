@@ -19,6 +19,6 @@ return require('packer').startup(function()
     --     alpha.setup(dashboard.opts)
     end
 	}
-	use "akinsho/bufferline.nvim"
+	-- use "akinsho/bufferline.nvim"
 
 end)

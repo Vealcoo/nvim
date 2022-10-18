@@ -72,6 +72,9 @@ set termguicolors
 
 nmap <Leader>q :q<CR>
 nmap <Leader>w :w<CR>
+nmap <Leader>[ :bp<CR>
+nmap <Leader>] :bn<CR>
+nmap <Leader>bd :bd<CR>
 
 "==============================================================================
 " 外掛配置 
@@ -304,6 +307,8 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'zeis/vim-kolor'
 " colorscheme doom-one
 Plug 'romgrk/doom-one.vim'
+" colorscheme Nightfox/Dayfox/Dawnfox/Duskfox/Nordfox/Terafox/Carbonfox
+Plug 'EdenEast/nightfox.nvim'
 
 " lua base --------------------------------------------------------------------
 " status line
@@ -319,7 +324,7 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 " lazygit (depend on telescope.nvim)
 Plug 'kdheepak/lazygit.nvim'
 " bufferline
-Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
 " Plug 'romgrk/barbar.nvim'
 " nvim-tree
 Plug 'kyazdani42/nvim-tree.lua'
@@ -332,10 +337,10 @@ Plug 'sindrets/diffview.nvim'
 " nice cursor line
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
-let g:VM_mouse_mappings = 1
-nmap   <C-LeftMouse>         <Plug>(VM-Mouse-Cursor)
-nmap   <C-RightMouse>        <Plug>(VM-Mouse-Word)  
-nmap   <M-C-RightMouse>      <Plug>(VM-Mouse-Column)
+" let g:VM_mouse_mappings = 1
+" nmap   <C-LeftMouse>         <Plug>(VM-Mouse-Cursor)
+" nmap   <C-RightMouse>        <Plug>(VM-Mouse-Word)  
+" nmap   <M-C-RightMouse>      <Plug>(VM-Mouse-Column)
 
 call plug#end()
 
@@ -411,7 +416,7 @@ autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
 
 " 配色方案, 可以從上面外掛安裝中的選擇一個使用 
 let g:rehash256 = 1
-colorscheme kolor " 主題
+colorscheme Carbonfox " 主題
 
 set background=dark " 主題背景 dark-深色; light-淺色
 
@@ -533,7 +538,7 @@ au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap qq <Plug>(go-def-tab)
+au FileType go nmap qq <Plug>(go-def)
 au FileType go nmap <Leader>n <Plug>(go-rename)
 au FileType go nmap <Leader>p :GoPlay <CR>
 
