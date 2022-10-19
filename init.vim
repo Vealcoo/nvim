@@ -135,7 +135,7 @@ Plug 'tpope/vim-commentary'
 " nmap <leader>t :<C-u>Yde<CR>
 
 " 程式碼自動完成，安裝完外掛還需要額外配置才可以使用
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 
 " 可以在文件中顯示 git 資訊
 Plug 'airblade/vim-gitgutter'
@@ -344,6 +344,7 @@ lua << EOF
 require('plugins')
 
 require('lsp.setup')
+require('lsp.nvim-cmp')
 
 require('lualine').setup()
 
