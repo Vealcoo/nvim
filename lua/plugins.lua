@@ -47,7 +47,7 @@ return require('packer').startup(function()
             dashboard.button( "e", "📄 New File" , ":ene <BAR> startinsert <CR>"),
 			dashboard.button( "g", "🔍 Find Files", ":Telescope find_files prompt_prefix=🔍<CR>"),
 			dashboard.button( "g", "🤖 Lazy Git", ":Telescope lazygit<CR>"),
-            dashboard.button( "q", "❌  Quit NVIM" , ":qa<CR>"),
+            dashboard.button( "q", "❌ Quit NVIM" , ":qa<CR>"),
         }
     --     local handle = io.popen('fortune')
     --     local fortune = handle:read("*a")
@@ -56,6 +56,8 @@ return require('packer').startup(function()
         alpha.setup(dashboard.opts)
     end
 	}
-	-- use "akinsho/bufferline.nvim"
+
+	use "williamboman/nvim-lsp-installer"
+	use "neovim/nvim-lspconfig"
 
 end)

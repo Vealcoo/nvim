@@ -2,10 +2,6 @@
 " vim 內建配置 
 "==============================================================================
 
-" 設定 vimrc 修改儲存後立刻生效，不用在重新開啟
-" 建議配置完成後將這個關閉，否則配置多了之後會很卡
-" autocmd BufWritePost $MYVIMRC source $MYVIMRC
-"
 " set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h20
 
 " set nowrap
@@ -347,6 +343,8 @@ call plug#end()
 lua << EOF
 require('plugins')
 
+require('lsp.setup')
+
 require('lualine').setup()
 
 require("which-key").setup {
@@ -368,7 +366,7 @@ require('bufferline').setup ({
         view = "multiwindow",
 		offsets = {{
             filetype = "NvimTree",
-            text = "File Explorer",
+            text = "       File Explorer",
             highlight = "Directory",
             text_align = "left"
         }}
@@ -419,6 +417,7 @@ let g:rehash256 = 1
 colorscheme Carbonfox " 主題
 
 set background=dark " 主題背景 dark-深色; light-淺色
+highlight Normal guibg=NONE ctermbg=None
 
 "==============================================================================
 " Startify 設置
