@@ -65,6 +65,7 @@ syntax on                    " 開啟檔案型別偵測
 au InsertLeave *.go write
 
 set termguicolors
+set updatetime=100
 
 nmap <Leader>q :q<CR>
 nmap <Leader>w :w<CR>
@@ -100,7 +101,7 @@ nmap ss <Plug>(easymotion-s2)
 Plug 'jistr/vim-nerdtree-tabs'
 
 " 可以在導航目錄中看到 git 版本資訊
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " 編輯時同時使用git指令
 Plug 'tpope/vim-fugitive'
@@ -139,14 +140,13 @@ Plug 'tpope/vim-commentary'
 
 " 可以在文件中顯示 git 資訊
 Plug 'airblade/vim-gitgutter'
-set updatetime=100
 
 " 下面兩個外掛要配合使用，可以自動生成程式碼塊
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 
 " go 主要外掛
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " go 中的程式碼追蹤，輸入 gd 就可以自動跳轉
 " Plug 'dgryski/vim-godef'
@@ -170,31 +170,36 @@ nmap <leader>z :FloatermNew<CR>
 nmap <leader>zp :FloatermPrev<CR>
 nmap <leader>zn :FloatermNext<CR>
 
-" 語法檢查
-Plug 'dense-analysis/ale'
+"" 語法檢查
+"Plug 'dense-analysis/ale'
 
-" 始終開啟標誌列
-let g:ale_sign_column_always = 1
-let g:ale_set_highlights = 1
-"自定義error和warning圖示
-let g:ale_sign_error = '🐔'
-let g:ale_sign_warning = '⚠️'
-"在vim自帶的狀態列中整合ale
-let g:ale_statusline_format = ['🐔 %d', '⚠️ %d', '👌 OK']
-"顯示Linter名稱,出錯或警告等相關資訊
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-" show errors or warnings in my statusline
-let g:airline#extensions#ale#enabled = 1
-"普通模式下，zz前往上一個錯誤或警告，xx前往下一個錯誤或警告
-nmap zz <Plug>(ale_previous_wrap)
-nmap xx <Plug>(ale_next_wrap)
-"<Leader>e觸發/關閉語法檢查
-nmap <Leader>e :ALEToggle<CR>
-"<Leader>d檢視錯誤或警告的詳細資訊
-nmap <Leader>d :ALEDetail<CR>
-nmap <Leader>dd :ALEHover<CR>
+"" 始終開啟標誌列
+"let g:ale_sign_column_always = 1
+"let g:ale_set_highlights = 1
+""自定義error和warning圖示
+"let g:ale_sign_error = '🐔'
+"let g:ale_sign_warning = '⚠️'
+""在vim自帶的狀態列中整合ale
+"let g:ale_statusline_format = ['🐔 %d', '⚠️ %d', '👌 OK']
+""顯示Linter名稱,出錯或警告等相關資訊
+"let g:ale_echo_msg_error_str = 'E'
+"let g:ale_echo_msg_warning_str = 'W'
+"let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+"" show errors or warnings in my statusline
+"let g:airline#extensions#ale#enabled = 1
+
+"let g:ale_fixers = {
+"    \ 'go': ['gofmt', 'goimports'],
+"\}
+
+""普通模式下，zz前往上一個錯誤或警告，xx前往下一個錯誤或警告
+"nmap zz <Plug>(ale_previous_wrap)
+"nmap xx <Plug>(ale_next_wrap)
+""<Leader>e觸發/關閉語法檢查
+"nmap <Leader>e :ALEToggle<CR>
+""<Leader>d檢視錯誤或警告的詳細資訊
+"nmap <Leader>d :ALEDetail<CR>
+"nmap <Leader>dd :ALEHover<CR>
 
 " Plug 'scrooloose/syntastic'
 
@@ -244,9 +249,6 @@ let g:SuperTabMappingBackward='<tab>'
 
 " tmux
 " Plug 'christoomey/vim-tmux-navigator'
-nmap <Leader>s :new <CR>
-nmap <Leader>tt :term <CR>
-
 
 " Plug 'matze/vim-move'
 " vmap <C-j> <Plug>MoveBlockDown
@@ -332,6 +334,9 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'sindrets/diffview.nvim'
 " nice cursor line
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" terminal
+Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
+
 
 " let g:VM_mouse_mappings = 1
 " nmap   <C-LeftMouse>         <Plug>(VM-Mouse-Cursor)
@@ -346,7 +351,11 @@ require('plugins')
 require('lsp.setup')
 require('lsp.nvim-cmp')
 
-require('lualine').setup()
+require('lualine').setup({
+	options = {
+		theme = 'onelight',  
+	}
+})
 
 require("which-key").setup {
     -- your configuration comes here
@@ -370,7 +379,8 @@ require('bufferline').setup ({
             text = "       File Explorer",
             highlight = "Directory",
             text_align = "left"
-        }}
+        }},
+		diagnostics = "nvim_lsp"
     }
 })
 
@@ -399,6 +409,9 @@ require("nvim-treesitter.configs").setup {
     }
  }
 }
+
+require("toggleterm").setup{}
+
 EOF
 
 " telescope
@@ -406,7 +419,21 @@ nmap <Leader>f :Telescope<CR>
 nmap fgit :Telescope lazygit<CR>
 " nvim-tree
 nmap ww :NvimTreeToggle<CR>
+" lsp
+nmap <Leader>rn :lua vim.lsp.buf.rename()<CR>
 
+nmap gd :lua vim.lsp.buf.definition()<CR>
+nmap gD: lua vim.lsp.buf.declaration()<CR>
+nmap gh :lua vim.lsp.buf.hover()<CR>
+nmap gi :lua vim.lsp.buf.implementation()<CR>
+nmap gr :lua vim.lsp.buf.references()<CR>
+
+nmap <Leader>= :lua vim.lsp.buf.formatting()<CR>
+
+nmap <Leader>tt :ToggleTerm size=13 direction=horizontal<CR>
+
+autocmd BufWritePre *.go lua vim.lsp.buf.formatting()
+autocmd BufWritePre *.go lua vim.lsp.buf.code_action()
 autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
 
 "==============================================================================
@@ -504,73 +531,73 @@ highlight Normal guibg=NONE ctermbg=None
 "==============================================================================
 " vim-go 外掛
 "==============================================================================
-let g:go_fmt_command = "goimports" 
-let g:go_autodetect_gopath = 1
+" let g:go_fmt_command = "goimports" 
+" let g:go_autodetect_gopath = 1
 
-" quickfix shows the error list when you write
-" let g:go_list_type = "quickfix"
-" let g:go_debug = ["shell-commands", "debugger-state", "debugger-commands", "lsp"]
-" let g:go_highlight_diagnostic_error = 1
-" let g:go_highlight_diagnostic_warnings = 1
-" let g:go_diagnostics_level = 2
+" " quickfix shows the error list when you write
+" " let g:go_list_type = "quickfix"
+" " let g:go_debug = ["shell-commands", "debugger-state", "debugger-commands", "lsp"]
+" " let g:go_highlight_diagnostic_error = 1
+" " let g:go_highlight_diagnostic_warnings = 1
+" " let g:go_diagnostics_level = 2
 
-let g:go_version_warning = 1
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_generate_tags = 1
-let g:go_test_timeout = '10s'
+" let g:go_version_warning = 1
+" let g:go_highlight_types = 1
+" let g:go_highlight_fields = 1
+" let g:go_highlight_functions = 1
+" let g:go_highlight_function_calls = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_extra_types = 1
+" let g:go_highlight_methods = 1
+" let g:go_highlight_generate_tags = 1
+" let g:go_test_timeout = '10s'
 
-let g:godef_split=2
+" let g:godef_split=2
 
-" vim-go custom mappings
-" au FileType go nmap <Leader>s <Plug>(go-implements)
-au FileType go nmap <Leader>i <Plug>(go-info)
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap qq <Plug>(go-def)
-au FileType go nmap <Leader>n <Plug>(go-rename)
-au FileType go nmap <Leader>p :GoPlay <CR>
+" " vim-go custom mappings
+" " au FileType go nmap <Leader>s <Plug>(go-implements)
+" au FileType go nmap <Leader>i <Plug>(go-info)
+" au FileType go nmap <Leader>gd <Plug>(go-doc)
+" au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+" au FileType go nmap <leader>r <Plug>(go-run)
+" au FileType go nmap <leader>b <Plug>(go-build)
+" au FileType go nmap <leader>t <Plug>(go-test)
+" au FileType go nmap <leader>c <Plug>(go-coverage)
+" au FileType go nmap <Leader>ds <Plug>(go-def-split)
+" au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+" au FileType go nmap qq <Plug>(go-def)
+" au FileType go nmap <Leader>n <Plug>(go-rename)
+" au FileType go nmap <Leader>p :GoPlay <CR>
 
-augroup go
-  autocmd!
-  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-augroup END
+" augroup go
+"   autocmd!
+"   autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+" augroup END
 
-" let g:go_gopls_enabled = 0
+" " let g:go_gopls_enabled = 0
 
 "==============================================================================
 " NERDTree 外掛
 "==============================================================================
 
-" 開啟和關閉NERDTree快捷鍵
-" control + w to switch tab 
-" nmap ww :NERDTreeToggle<CR>
-" 顯示行號
-let NERDTreeShowLineNumbers=0
-" 開啟檔案時是否顯示目錄
-let NERDTreeAutoCenter=0
-" 是否顯示隱藏檔案
-let NERDTreeShowHidden=1
-" 設定寬度
-let NERDTreeWinSize=40
-" 忽略一下檔案的顯示
-let NERDTreeIgnore=[]
-" 開啟 vim 檔案及顯示書籤列表
-let NERDTreeShowBookmarks=2
+" " 開啟和關閉NERDTree快捷鍵
+" " control + w to switch tab 
+" " nmap ww :NERDTreeToggle<CR>
+" " 顯示行號
+" let NERDTreeShowLineNumbers=0
+" " 開啟檔案時是否顯示目錄
+" let NERDTreeAutoCenter=0
+" " 是否顯示隱藏檔案
+" let NERDTreeShowHidden=1
+" " 設定寬度
+" let NERDTreeWinSize=40
+" " 忽略一下檔案的顯示
+" let NERDTreeIgnore=[]
+" " 開啟 vim 檔案及顯示書籤列表
+" let NERDTreeShowBookmarks=2
 
-" 在終端啟動vim時，共享NERDTree
-let g:nerdtree_tabs_open_on_console_startup=0
+" " 在終端啟動vim時，共享NERDTree
+" let g:nerdtree_tabs_open_on_console_startup=0
 
 "==============================================================================
 "  majutsushi/tagbar 外掛
@@ -597,37 +624,37 @@ nmap ee :TagbarToggle<CR>
 "==============================================================================
 "  nerdtree-git-plugin 外掛
 "==============================================================================
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
+" let g:NERDTreeGitStatusIndicatorMapCustom = {
+"     \ "Modified"  : "✹",
+"     \ "Staged"    : "✚",
+"     \ "Untracked" : "✭",
+"     \ "Renamed"   : "➜",
+"     \ "Unmerged"  : "═",
+"     \ "Deleted"   : "✖",
+"     \ "Dirty"     : "✗",
+"     \ "Clean"     : "✔︎",
+"     \ 'Ignored'   : '☒',
+"     \ "Unknown"   : "?"
+"     \ }
 
-let g:NERDTreeGitStatusShowIgnored = 1
+" let g:NERDTreeGitStatusShowIgnored = 1
 
 "==============================================================================
 "  Valloric/YouCompleteMe 外掛
 "==============================================================================
 
-let g:ycm_gopls_binary_path = "gopls"
-" let g:ycm_gopls_args = ['-remote=auto']
+" let g:ycm_gopls_binary_path = "gopls"
+" " let g:ycm_gopls_args = ['-remote=auto']
 
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<space>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+" " make YCM compatible with UltiSnips (using supertab)
+" let g:ycm_key_list_select_completion = ['<C-n>', '<space>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:SuperTabDefaultCompletionType = '<C-n>'
 
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" " better key bindings for UltiSnipsExpandTrigger
+" let g:UltiSnipsExpandTrigger = "<tab>"
+" let g:UltiSnipsJumpForwardTrigger = "<tab>"
+" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 "==============================================================================
 "  其他外掛配置
@@ -695,34 +722,3 @@ nmap <leader>ft :Tags<cr>
 nmap <leader>fa :Ag 
 nmap <leader>fc :Commits
 
-"==============================================================================
-" GVim 的配置
-"==============================================================================
-
-" 如果不使用 GVim ，可以不用配置下面的配置
-if has('gui_running')
-        colorscheme one
-    " 設定啟動時視窗的大小
-    set lines=999 columns=999 linespace=4
-
-    " 設定字型及大小
-        set guifont=Roboto\ Mono\ 13
-
-    set guioptions-=m " 隱藏選單欄
-    set guioptions-=T " 隱藏工具欄
-    set guioptions-=L " 隱藏左側滾動條
-    set guioptions-=r " 隱藏右側滾動條
-    set guioptions-=b " 隱藏底部滾動條
-            " 在 gvim 下不會和 terminal 的 alt+數字的快捷鍵衝突，
-    " 所以將 tab 切換配置一份 alt+數字的快捷鍵
-    :nn <M-1> 1gt
-    :nn <M-2> 2gt
-    :nn <M-3> 3gt
-    :nn <M-4> 4gt
-    :nn <M-5> 5gt
-    :nn <M-6> 6gt
-    :nn <M-7> 7gt
-    :nn <M-8> 8gt
-    :nn <M-9> 9gt
-    :nn <M-0> :tablast<CR>
-end
