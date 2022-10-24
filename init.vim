@@ -107,6 +107,7 @@ Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tpope/vim-fugitive'
 nmap git :Gdiff<CR>
 nmap <Leader>gr :Gread<CR>
+nmap <Leader>gb :Git blame<CR>
 
 " 查找文件和搜索的工具
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -322,7 +323,7 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 " lazygit (depend on telescope.nvim)
 Plug 'kdheepak/lazygit.nvim'
 " bufferline
-Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.12.0' }  " v3 之後的 click event 是壞的
 " Plug 'romgrk/barbar.nvim'
 " nvim-tree
 Plug 'kyazdani42/nvim-tree.lua'
@@ -336,6 +337,8 @@ Plug 'sindrets/diffview.nvim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " terminal
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
+" trouble.nvim
+Plug 'folke/trouble.nvim'
 
 
 " let g:VM_mouse_mappings = 1
@@ -371,7 +374,7 @@ require("nvim-tree").setup()
 
 require('bufferline').setup ({
     options = {
-        separator_style = "slant",
+	    separator_style = "slant",
         show_buffer_close_icons = true,
         view = "multiwindow",
 		offsets = {{
@@ -412,6 +415,22 @@ require("nvim-treesitter.configs").setup {
 
 require("toggleterm").setup{}
 
+require("trouble").setup {
+	height = 3,
+    signs = {
+        -- icons / text used for a diagnostic
+        error = "",
+        warning = "",
+        hint = "",
+        information = "",
+        other = "﫠"
+    },
+	auto_open = true, -- automatically open the list when you have diagnostics
+    auto_close = true, -- automatically close the list when you have no diagnostics
+	auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
+    auto_fold = true, -- automatically fold a file trouble list at creation
+}
+
 EOF
 
 " telescope
@@ -423,17 +442,22 @@ nmap ww :NvimTreeToggle<CR>
 nmap <Leader>rn :lua vim.lsp.buf.rename()<CR>
 
 nmap gd :lua vim.lsp.buf.definition()<CR>
-nmap gD: lua vim.lsp.buf.declaration()<CR>
+nmap gD :lua vim.lsp.buf.declaration()<CR>
 nmap gh :lua vim.lsp.buf.hover()<CR>
 nmap gi :lua vim.lsp.buf.implementation()<CR>
 nmap gr :lua vim.lsp.buf.references()<CR>
+nmap zz :lua vim.diagnostic.goto_prev()<CR>
+nmap xx :lua vim.diagnostic.goto_next()<CR>
 
 nmap <Leader>= :lua vim.lsp.buf.formatting()<CR>
 
 nmap <Leader>tt :ToggleTerm size=13 direction=horizontal<CR>
 
+nmap err :TroubleToggle<cr>
+
 autocmd BufWritePre *.go lua vim.lsp.buf.formatting()
 autocmd BufWritePre *.go lua vim.lsp.buf.code_action()
+autocmd BufWritePre *.go LspRestart
 autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
 
 "==============================================================================
@@ -442,7 +466,7 @@ autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
 
 " 配色方案, 可以從上面外掛安裝中的選擇一個使用 
 let g:rehash256 = 1
-colorscheme Carbonfox " 主題
+colorscheme carbonfox " 主題
 
 set background=dark " 主題背景 dark-深色; light-淺色
 highlight Normal guibg=NONE ctermbg=None
