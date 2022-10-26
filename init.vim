@@ -339,7 +339,8 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 " trouble.nvim
 Plug 'folke/trouble.nvim'
-
+" notify
+Plug 'rcarriga/nvim-notify'
 
 " let g:VM_mouse_mappings = 1
 " nmap   <C-LeftMouse>         <Plug>(VM-Mouse-Cursor)
@@ -356,7 +357,7 @@ require('lsp.nvim-cmp')
 
 require('lualine').setup({
 	options = {
-		theme = 'onelight',  
+		theme = 'dracula',  
 	}
 })
 
@@ -431,9 +432,16 @@ require("trouble").setup {
     auto_fold = true, -- automatically fold a file trouble list at creation
 }
 
+require("notify").setup{
+	stages = "fade_in_slide_out",	
+	timeout = 3000,
+	background_colour = "#2E3440",
+}
+vim.notify = require("notify")
+
 EOF
 
-" telescope
+" telescope:
 nmap <Leader>f :Telescope<CR>
 nmap fgit :Telescope lazygit<CR>
 " nvim-tree
@@ -457,7 +465,7 @@ nmap err :TroubleToggle<cr>
 
 autocmd BufWritePre *.go lua vim.lsp.buf.formatting()
 autocmd BufWritePre *.go lua vim.lsp.buf.code_action()
-autocmd BufWritePre *.go LspRestart
+" autocmd BufWritePre *.go LspRestart
 autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
 
 "==============================================================================
