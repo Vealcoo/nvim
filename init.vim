@@ -21,11 +21,10 @@ set mouse=a
 set mousemodel=popup_setpos
 
 " 共用系統的剪貼本
-set clipboard+=unnamedplus
-" 讓d只刪除不複製到剪貼版上
-nmap d "_d
+" set clipboard+=unnamedplus
+" set clipboard=unnamed
 
-" 文件被修改時自動重新讀取
+"文件被修改時自動重新讀取
 set autoread
 " 設定行號
 set relativenumber
@@ -46,12 +45,12 @@ set autoindent " 繼承前一行的縮排方式，適用於多行註釋
 let mapleader='\'
 
 "==== 系統剪下板複製貼上 ====
-" " v 模式下複製內容到系統剪下板
-" vmap <Leader>c "+yy
-" " n 模式下複製一行到系統剪下板
-" nmap <Leader>c "+yy
-" " n 模式下貼上系統剪下板的內容
-" nmap <Leader>v "+p
+" v 模式下複製內容到系統剪下板
+vmap  <C-c> "+yy
+" n 模式下複製一行到系統剪下板
+nmap  <C-c> "+yy
+" n 模式下貼上系統剪下板的內容
+nmap  <C-v> "+p
 
 " 開啟實時搜尋
 set incsearch
@@ -68,7 +67,9 @@ set termguicolors
 set updatetime=100
 
 nmap <Leader>q :q<CR>
+nmap <Leader>qa :qa<CR>
 nmap <Leader>w :w<CR>
+nmap <Leader>wa :wa<CR>
 nmap <Leader>[ :bp<CR>
 nmap <Leader>] :bn<CR>
 nmap <Leader>bd :bd<CR>
@@ -119,7 +120,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 
 " 自動補全括號的外掛，包括小括號，中括號，以及花括號
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 
 " 快速註解
 Plug 'tpope/vim-commentary'
@@ -283,6 +284,10 @@ nmap <Leader>du :Docker compose up<CR>
 nmap <Leader>ds :Docker compose stop<CR>
 nmap <Leader>drs :Docker compose restart<CR>
 
+" tagbar support lsp
+Plug 'liuchengxu/vista.vim'
+nmap map :Vista nvim_lsp<CR>
+
 "配色方案
 " colorscheme neodark
 Plug 'KeitaNakamura/neodark.vim'
@@ -341,6 +346,8 @@ Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 Plug 'folke/trouble.nvim'
 " notify
 Plug 'rcarriga/nvim-notify'
+" 自動補全括號的外掛
+Plug 'windwp/nvim-autopairs'
 
 " let g:VM_mouse_mappings = 1
 " nmap   <C-LeftMouse>         <Plug>(VM-Mouse-Cursor)
@@ -438,6 +445,16 @@ require("notify").setup{
 	background_colour = "#2E3440",
 }
 vim.notify = require("notify")
+
+require('impatient')
+
+require("nvim-autopairs").setup{}
+
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl= hl, numhl = hl })
+end
 
 EOF
 

@@ -99,7 +99,7 @@ return require('packer').startup(function()
 	use "williamboman/nvim-lsp-installer"
 	use "neovim/nvim-lspconfig"
 
-	  -- nvim-cmp
+	-- nvim-cmp
   	use 'hrsh7th/cmp-nvim-lsp' -- { name = nvim_lsp }
   	use 'hrsh7th/cmp-buffer'   -- { name = 'buffer' },
   	use 'hrsh7th/cmp-path'     -- { name = 'path' }
@@ -111,5 +111,8 @@ return require('packer').startup(function()
   	use 'rafamadriz/friendly-snippets'
   	-- lspkind
   	use 'onsails/lspkind-nvim'
+
+	-- speed up loading lua modules
+	use 'lewis6991/impatient.nvim'
 
 end)

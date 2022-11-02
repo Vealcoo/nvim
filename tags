@@ -1,0 +1,59 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+<F5>	.\init.vim	/^map <silent> <F5> <Plug>MarkdownPreview$/;"	m
+<F6>	.\init.vim	/^map <silent> <F6> <Plug>StopMarkdownPreview$/;"	m
+<Leader>=	.\init.vim	/^nmap <Leader>= :lua vim.lsp.buf.formatting()<CR>$/;"	m
+<Leader>[	.\init.vim	/^nmap <Leader>[ :bp<CR>$/;"	m
+<Leader>]	.\init.vim	/^nmap <Leader>] :bn<CR>$/;"	m
+<Leader>bd	.\init.vim	/^nmap <Leader>bd :bd<CR>$/;"	m
+<Leader>drs	.\init.vim	/^nmap <Leader>drs :Docker compose restart<CR>$/;"	m
+<Leader>ds	.\init.vim	/^nmap <Leader>ds :Docker compose stop<CR>$/;"	m
+<Leader>du	.\init.vim	/^nmap <Leader>du :Docker compose up<CR>$/;"	m
+<Leader>f	.\init.vim	/^nmap <Leader>f :Telescope<CR>$/;"	m
+<Leader>gb	.\init.vim	/^nmap <Leader>gb :Git blame<CR>$/;"	m
+<Leader>gr	.\init.vim	/^nmap <Leader>gr :Gread<CR>$/;"	m
+<Leader>q	.\init.vim	/^nmap <Leader>q :q<CR>$/;"	m
+<Leader>rn	.\init.vim	/^nmap <Leader>rn :lua vim.lsp.buf.rename()<CR>$/;"	m
+<Leader>tt	.\init.vim	/^nmap <Leader>tt :ToggleTerm size=13 direction=horizontal<CR>$/;"	m
+<Leader>w	.\init.vim	/^nmap <Leader>w :w<CR>$/;"	m
+<leader>f?	.\init.vim	/^nmap <leader>f? :GFiles? $/;"	m
+<leader>fa	.\init.vim	/^nmap <leader>fa :Ag $/;"	m
+<leader>fc	.\init.vim	/^nmap <leader>fc :Commits$/;"	m
+<leader>ff	.\init.vim	/^nmap <leader>ff :Files $/;"	m
+<leader>fg	.\init.vim	/^nmap <leader>fg :GFiles $/;"	m
+<leader>fl	.\init.vim	/^nmap <leader>fl :Lines $/;"	m
+<leader>ft	.\init.vim	/^nmap <leader>ft :Tags<cr>$/;"	m
+<leader>z	.\init.vim	/^nmap <leader>z :FloatermNew<CR>$/;"	m
+<leader>zn	.\init.vim	/^nmap <leader>zn :FloatermNext<CR>$/;"	m
+<leader>zp	.\init.vim	/^nmap <leader>zp :FloatermPrev<CR>$/;"	m
+_decremental	.\init.vim	/^      node_decremental = '<BS>',$/;"	m
+_incremental	.\init.vim	/^      node_incremental = '<CR>',$/;"	m
+d	.\init.vim	/^nmap d "_d$/;"	m
+ee	.\init.vim	/^nmap ee :TagbarToggle<CR>$/;"	m
+err	.\init.vim	/^nmap err :TroubleToggle<cr>$/;"	m
+fgit	.\init.vim	/^nmap fgit :Telescope lazygit<CR>$/;"	m
+g:SuperTabMappingBackward	.\init.vim	/^let g:SuperTabMappingBackward='<tab>'$/;"	v
+g:SuperTabMappingForward	.\init.vim	/^let g:SuperTabMappingForward='<s-tab>'$/;"	v
+g:auto_save	.\init.vim	/^let g:auto_save = 0  " enable AutoSave on Vim startup$/;"	v
+g:fzf_action	.\init.vim	/^let g:fzf_action = {$/;"	v
+g:fzf_colors	.\init.vim	/^    let g:fzf_colors =$/;"	v
+g:fzf_history_dir	.\init.vim	/^let g:fzf_history_dir = '~\/.local\/share\/fzf-history'$/;"	v
+g:fzf_layout	.\init.vim	/^let g:fzf_layout = { 'down': '~40%' }$/;"	v
+g:rehash256	.\init.vim	/^let g:rehash256 = 1$/;"	v
+g:tagbar_autofocus	.\init.vim	/^let g:tagbar_autofocus = 1$/;"	v
+g:tagbar_width	.\init.vim	/^let g:tagbar_width=45$/;"	v
+gD	.\init.vim	/^nmap gD :lua vim.lsp.buf.declaration()<CR>$/;"	m
+gd	.\init.vim	/^nmap gd :lua vim.lsp.buf.definition()<CR>$/;"	m
+gh	.\init.vim	/^nmap gh :lua vim.lsp.buf.hover()<CR>$/;"	m
+gi	.\init.vim	/^nmap gi :lua vim.lsp.buf.implementation()<CR>$/;"	m
+git	.\init.vim	/^nmap git :Gdiff<CR>$/;"	m
+gr	.\init.vim	/^nmap gr :lua vim.lsp.buf.references()<CR>$/;"	m
+mapleader	.\init.vim	/^let mapleader='\\'$/;"	v
+ss	.\init.vim	/^nmap ss <Plug>(easymotion-s2)$/;"	m
+ww	.\init.vim	/^nmap ww :NvimTreeToggle<CR>$/;"	m
+xx	.\init.vim	/^nmap xx :lua vim.diagnostic.goto_next()<CR>$/;"	m
+zz	.\init.vim	/^nmap zz :lua vim.diagnostic.goto_prev()<CR>$/;"	m
