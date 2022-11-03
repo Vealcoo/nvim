@@ -117,7 +117,7 @@ Plug 'junegunn/fzf.vim'
 " 檢視當前程式碼檔案中的變數和函式列表的外掛，
 " 可以切換和跳轉到程式碼中對應的變數和函式的位置
 " 大綱式導航, Go 需要 https://github.com/jstemmer/gotags 支援
-Plug 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'
 
 " 自動補全括號的外掛，包括小括號，中括號，以及花括號
 " Plug 'jiangmiao/auto-pairs'
@@ -286,7 +286,7 @@ nmap <Leader>drs :Docker compose restart<CR>
 
 " tagbar support lsp
 Plug 'liuchengxu/vista.vim'
-nmap map :Vista nvim_lsp<CR>
+nmap ee :Vista ctags<CR>
 
 "配色方案
 " colorscheme neodark
@@ -653,9 +653,9 @@ highlight Normal guibg=NONE ctermbg=None
 "==============================================================================
 
 " majutsushi/tagbar 外掛開啟關閉快捷鍵
-let g:tagbar_autofocus = 1
+" let g:tagbar_autofocus = 1
 
-let g:tagbar_width=45
+" let g:tagbar_width=45
 
 " let g:tagbar_type_go = {
 "     \ 'ctagstype': 'go',
@@ -668,7 +668,7 @@ let g:tagbar_width=45
 "     \]
 " \}
 
-nmap ee :TagbarToggle<CR>
+" nmap ee :TagbarToggle<CR>
 
 "==============================================================================
 "  nerdtree-git-plugin 外掛
