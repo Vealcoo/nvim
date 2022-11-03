@@ -286,7 +286,7 @@ nmap <Leader>drs :Docker compose restart<CR>
 
 " tagbar support lsp
 Plug 'liuchengxu/vista.vim'
-nmap ee :Vista ctags<CR>
+nmap ee :Vista!!<CR>
 
 "配色方案
 " colorscheme neodark
