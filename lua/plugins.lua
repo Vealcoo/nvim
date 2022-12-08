@@ -115,4 +115,7 @@ return require('packer').startup(function()
 	-- speed up loading lua modules
 	use 'lewis6991/impatient.nvim'
 
+	-- like tagbar
+	use 'simrat39/symbols-outline.nvim'
+
 end)

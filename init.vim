@@ -6,6 +6,12 @@
 
 " set nowrap
 
+" set code fold
+set foldmethod=indent   "fold based on indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
+
 " 關閉相容模式
 set nocompatible
 
@@ -27,7 +33,7 @@ set mousemodel=popup_setpos
 "文件被修改時自動重新讀取
 set autoread
 " 設定行號
-set relativenumber
+" set relativenumber
 set nu 
 "突出顯示當前行
 set cursorline 
@@ -105,10 +111,10 @@ Plug 'jistr/vim-nerdtree-tabs'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " 編輯時同時使用git指令
-Plug 'tpope/vim-fugitive'
-nmap git :Gdiff<CR>
-nmap <Leader>gr :Gread<CR>
-nmap <Leader>gb :Git blame<CR>
+" Plug 'tpope/vim-fugitive'
+" nmap git :Gdiff<CR>
+" nmap <Leader>gr :Gread<CR>
+" nmap <Leader>gb :Git blame<CR>
 
 " 查找文件和搜索的工具
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -168,10 +174,10 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " nmap <silent> <Right> :call animate#window_delta_width(-5)<CR>
 
 " 懸浮終端🐔
-Plug 'voldikss/vim-floaterm'
-nmap <leader>z :FloatermNew<CR>
-nmap <leader>zp :FloatermPrev<CR>
-nmap <leader>zn :FloatermNext<CR>
+" Plug 'voldikss/vim-floaterm'
+" nmap <leader>z :FloatermNew<CR>
+" nmap <leader>zp :FloatermPrev<CR>
+" nmap <leader>zn :FloatermNext<CR>
 
 "" 語法檢查
 "Plug 'dense-analysis/ale'
@@ -286,8 +292,8 @@ nmap <Leader>ds :Docker compose stop<CR>
 nmap <Leader>drs :Docker compose restart<CR>
 
 " tagbar support lsp
-Plug 'liuchengxu/vista.vim'
-nmap ee :Vista!!<CR>
+" Plug 'liuchengxu/vista.vim'
+" nmap ee :Vista!!<CR>
 
 "配色方案
 " colorscheme neodark
@@ -349,6 +355,16 @@ Plug 'folke/trouble.nvim'
 Plug 'rcarriga/nvim-notify'
 " 自動補全括號的外掛
 Plug 'windwp/nvim-autopairs'
+" smart git
+Plug 'lewis6991/gitsigns.nvim'
+nmap git :Gitsigns diffthis<CR>
+" golang support
+Plug 'ray-x/go.nvim'
+Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' } " recommanded if need floating window support
+" lsp_signature
+Plug 'ray-x/lsp_signature.nvim'
+" lua fzf (Unsupport Windows QQ)
+" Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 
 " let g:VM_mouse_mappings = 1
 " nmap   <C-LeftMouse>         <Plug>(VM-Mouse-Cursor)
@@ -457,6 +473,40 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, { text = icon, texthl= hl, numhl = hl })
 end
 
+require('gitsigns').setup{
+	current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  	current_line_blame_opts = {
+    	virt_text = true,
+    	virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+    	delay = 250,
+    	ignore_whitespace = false,
+  },
+}
+
+require('go').setup()
+
+local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+   require('go.format').goimport()
+  end,
+  group = format_sync_grp,
+})
+
+local signature_config = {
+  log_path = vim.fn.expand("$HOME") .. "/tmp/sig.log",
+  debug = true,
+  hint_enable = false,
+  handler_opts = { border = "single" },
+  max_width = 80,
+}
+require("lsp_signature").setup(signature_config)
+
+require("symbols-outline").setup({
+	width = 15,
+})
+
 EOF
 
 " telescope:
@@ -478,13 +528,16 @@ nmap xx :lua vim.diagnostic.goto_next()<CR>
 nmap <Leader>= :lua vim.lsp.buf.formatting()<CR>
 
 nmap <Leader>tt :ToggleTerm size=13 direction=horizontal<CR>
+nmap <Leader>z :ToggleTerm direction=float<CR>
 
 nmap err :TroubleToggle<cr>
 
-autocmd BufWritePre *.go lua vim.lsp.buf.formatting()
-autocmd BufWritePre *.go lua vim.lsp.buf.code_action()
+" autocmd BufWritePre *.go lua vim.lsp.buf.formatting()
+" autocmd BufWritePre *.go lua vim.lsp.buf.code_action()
 " autocmd BufWritePre *.go LspRestart
 autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
+
+nmap ee :SymbolsOutline<cr>
 
 "==============================================================================
 " 主題配色 
@@ -492,7 +545,7 @@ autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
 
 " 配色方案, 可以從上面外掛安裝中的選擇一個使用 
 let g:rehash256 = 1
-colorscheme carbonfox " 主題
+colorscheme default " 主題
 
 set background=dark " 主題背景 dark-深色; light-淺色
 highlight Normal guibg=NONE ctermbg=None
