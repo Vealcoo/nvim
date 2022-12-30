@@ -84,6 +84,7 @@ nmap <Leader>bd :bd<CR>
 " For GUI
 "==============================================================================
 set guifont=FiraCode\ Nerd\ Font\ Mono\ Retina:h11
+let g:neovide_transparency=0.8
 let g:neovide_scale_factor=1.0
 function! ChangeScaleFactor(delta)
     let g:neovide_scale_factor = g:neovide_scale_factor * a:delta
