@@ -55,8 +55,15 @@ let mapleader='\'
 vmap  <C-c> "+y
 " n 模式下複製一行到系統剪下板
 nmap  <C-c> "+y
+" v 模式下貼上系統剪下板的內容
+vmap  <C-v> "+p
 " n 模式下貼上系統剪下板的內容
 nmap  <C-v> "+p
+
+inoremap <c-v> <c-r>+
+cnoremap <c-v> <c-r>+
+" use <c-r> to insert original character without triggering things like auto-pairs
+inoremap <c-r> <c-v>
 
 " 開啟實時搜尋
 set incsearch
@@ -84,7 +91,7 @@ nmap <Leader>bd :bd<CR>
 " For GUI
 "==============================================================================
 set guifont=FiraCode\ Nerd\ Font\ Mono\ Retina:h11
-let g:neovide_transparency=0.8
+let g:neovide_transparency=0.9
 let g:neovide_scale_factor=1.0
 function! ChangeScaleFactor(delta)
     let g:neovide_scale_factor = g:neovide_scale_factor * a:delta
@@ -382,6 +389,8 @@ Plug 'ray-x/lsp_signature.nvim'
 " nmap   <C-RightMouse>        <Plug>(VM-Mouse-Word)  
 " nmap   <M-C-RightMouse>      <Plug>(VM-Mouse-Column)
 
+Plug 'nvim-telescope/telescope-file-browser.nvim'
+
 call plug#end()
 
 lua << EOF
@@ -553,6 +562,10 @@ require("symbols-outline").setup({
 	width = 30,
 })
 
+-- To get telescope-file-browser loaded and working with telescope,
+-- you need to call load_extension, somewhere after setup function:
+require("telescope").load_extension "file_browser"
+
 EOF
 
 " telescope:
@@ -591,7 +604,7 @@ nmap ee :SymbolsOutline<cr>
 
 " 配色方案, 可以從上面外掛安裝中的選擇一個使用 
 let g:rehash256 = 1
-colorscheme default " 主題
+colorscheme Carbonfox " 主題
 
 set background=dark " 主題背景 dark-深色; light-淺色
 highlight Normal guibg=NONE ctermbg=None
