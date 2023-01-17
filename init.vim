@@ -15,6 +15,8 @@ set foldlevel=1         "this is just what i use
 " 關閉相容模式
 set nocompatible
 
+set smartindent
+
 set autowrite
 
 set encoding=UTF-8
@@ -87,6 +89,8 @@ nmap <Leader>[ :bp<CR>
 nmap <Leader>] :bn<CR>
 nmap <Leader>bd :bd<CR>
 
+nmap <Leader><Tab> <C-w>w
+nmap <BS> <C-w>W
 "==============================================================================
 " For GUI
 "==============================================================================
@@ -391,10 +395,16 @@ Plug 'ray-x/lsp_signature.nvim'
 
 Plug 'nvim-telescope/telescope-file-browser.nvim'
 
+Plug 'L3MON4D3/LuaSnip', {'tag': 'v<CurrentMajor>.*'}
+
+" lsp color
+Plug 'folke/lsp-colors.nvim'
+
 call plug#end()
 
 lua << EOF
 require('plugins')
+require("nvim-lsp-installer").setup {}
 
 require('lsp.setup')
 require('lsp.nvim-cmp')
@@ -566,6 +576,13 @@ require("symbols-outline").setup({
 -- you need to call load_extension, somewhere after setup function:
 require("telescope").load_extension "file_browser"
 
+require("lsp-colors").setup({
+  Error = "#db4b4b",
+  Warning = "#e0af68",
+  Information = "#0db9d7",
+  Hint = "#10B981"
+})
+
 EOF
 
 " telescope:
@@ -596,7 +613,9 @@ nmap err :TroubleToggle<cr>
 " autocmd BufWritePre *.go LspRestart
 " autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
 
-nmap ee :SymbolsOutline<cr>
+nmap ee :SymbolsOutline<CR>
+
+nmap <Leader>b :Telescope file_browser<CR>
 
 "==============================================================================
 " 主題配色 

@@ -135,20 +135,10 @@ _G.packer_plugins = {
     path = "C:\\Users\\user\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
-  ["nvim-ufo"] = {
-    loaded = true,
-    path = "C:\\Users\\user\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-ufo",
-    url = "https://github.com/kevinhwang91/nvim-ufo"
-  },
   ["packer.nvim"] = {
     loaded = true,
     path = "C:\\Users\\user\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
-  },
-  ["promise-async"] = {
-    loaded = true,
-    path = "C:\\Users\\user\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\promise-async",
-    url = "https://github.com/kevinhwang91/promise-async"
   },
   ["symbols-outline.nvim"] = {
     loaded = true,

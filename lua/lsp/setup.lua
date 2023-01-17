@@ -3,7 +3,10 @@ local lsp_installer = require "nvim-lsp-installer"
 -- https://github.com/williamboman/nvim-lsp-installer#available-lsps
 local servers = {
   sumneko_lua = require "lsp.lua", -- /lua/lsp/lua.lua
-  gopls = require "lsp.go"
+  gopls = require "lsp.go",
+  eslint = require "lsp.eslint",
+  vuels = require "lsp.vuels",
+  cssls = require "lsp.cssls"
 }
 
 -- 自動安裝 LanguageServers
