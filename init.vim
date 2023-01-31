@@ -2,15 +2,16 @@
 " vim 內建配置 
 "==============================================================================
 
-" set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h20
-
 " set nowrap
 
 " set code fold
-set foldmethod=indent   "fold based on indent
-set foldnestmax=10      "deepest fold is 10 levels
-set nofoldenable        "dont fold by default
-set foldlevel=1         "this is just what i use
+" set foldmethod=indent   "fold based on indent
+" set foldnestmax=10      "deepest fold is 10 levels
+" set nofoldenable        "dont fold by default
+" set foldlevel=1         "this is just what i use
+
+" set paste
+set pastetoggle=<F3>
 
 " 關閉相容模式
 set nocompatible
@@ -62,10 +63,15 @@ vmap  <C-v> "+p
 " n 模式下貼上系統剪下板的內容
 nmap  <C-v> "+p
 
-inoremap <c-v> <c-r>+
+" inoremap <c-v> <c-r>+
+inoremap <c-v> <ESC> "+p a
 cnoremap <c-v> <c-r>+
 " use <c-r> to insert original character without triggering things like auto-pairs
 inoremap <c-r> <c-v>
+" for terminal
+tnoremap <ESC> <C-\><C-n>
+tnoremap <C-S-v> <C-\><C-n> "+p a
+tnoremap <C-S-c> "+y
 
 " 開啟實時搜尋
 set incsearch
@@ -342,6 +348,8 @@ Plug 'zeis/vim-kolor'
 Plug 'romgrk/doom-one.vim'
 " colorscheme Nightfox/Dayfox/Dawnfox/Duskfox/Nordfox/Terafox/Carbonfox
 Plug 'EdenEast/nightfox.nvim'
+" colorscheme tokyonight/tokyonight-night/tokyonight-storm/tokyonight-day/tokyonight-moon
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 " lua base --------------------------------------------------------------------
 " status line
@@ -506,7 +514,7 @@ require("toggleterm").setup({
 	})
 
 require("trouble").setup {
-	height = 3,
+	height = 6,
     signs = {
         -- icons / text used for a diagnostic
         error = "",
@@ -569,7 +577,7 @@ local signature_config = {
 require("lsp_signature").setup(signature_config)
 
 require("symbols-outline").setup({
-	width = 30,
+	width = 20,
 })
 
 -- To get telescope-file-browser loaded and working with telescope,
