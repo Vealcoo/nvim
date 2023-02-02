@@ -64,13 +64,13 @@ vmap  <C-v> "+p
 nmap  <C-v> "+p
 
 " inoremap <c-v> <c-r>+
-inoremap <c-v> <ESC> "+p a
+inoremap <c-v> <ESC>pa
 cnoremap <c-v> <c-r>+
 " use <c-r> to insert original character without triggering things like auto-pairs
 inoremap <c-r> <c-v>
 " for terminal
 tnoremap <ESC> <C-\><C-n>
-tnoremap <C-S-v> <C-\><C-n> "+p a
+tnoremap <C-S-v> <C-\><C-n>"+pa
 tnoremap <C-S-c> "+y
 
 " 開啟實時搜尋
