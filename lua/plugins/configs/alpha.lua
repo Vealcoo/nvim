@@ -36,7 +36,7 @@ end
 
 -- dynamic header padding
 local fn = vim.fn
-local marginTopPercent = 0.3
+local marginTopPercent = 0.2
 local headerPadding = fn.max { 2, fn.floor(fn.winheight(0) * marginTopPercent) }
 
 local options = {
@@ -90,5 +90,6 @@ alpha.setup {
     options.headerPaddingBottom,
     options.buttons,
   },
+  theme = "dashboard",
   opts = {},
 }
