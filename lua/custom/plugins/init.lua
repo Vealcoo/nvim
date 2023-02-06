@@ -26,6 +26,7 @@ return {
   ["nvim-treesitter/nvim-treesitter"] = { override_options = overrides.treesitter },
   ["lukas-reineke/indent-blankline.nvim"] = { override_options = overrides.blankline },
   ["williamboman/mason.nvim"] = { override_options = overrides.mason },
+  ["lewis6991/gitsigns.nvim"] = { override_options = overrides.gitsigns },
 
   -- ["NvChad/ui"] = {
   --   override_options = {
