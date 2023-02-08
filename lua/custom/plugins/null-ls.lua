@@ -11,7 +11,7 @@ local sources = {
   -- webdev stuff
   b.formatting.deno_fmt,
   -- b.formatting.prettier,
-  b.formatting.prettier.with { filetypes = { "vue", "html", "markdown", "css", "scss" } },
+  b.formatting.prettier,
 
   -- Lua
   b.formatting.stylua,
@@ -22,6 +22,10 @@ local sources = {
 
   -- cpp
   b.formatting.clang_format,
+
+  -- backend
+  b.formatting.goimports,
+  b.formatting.sql_formatter,
 }
 
 null_ls.setup {

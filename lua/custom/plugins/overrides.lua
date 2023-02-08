@@ -105,6 +105,7 @@ M.mason = {
     "typescript-language-server",
     "deno",
     "vue-language-server",
+    "prettier",
     -- "emmet-ls",
     "json-lsp",
     "tailwindcss-language-server",
@@ -115,7 +116,9 @@ M.mason = {
 
     -- backend
     "sqls",
+    "sql-formatter",
     "gopls",
+    "goimports",
   },
 }
 
