@@ -3,6 +3,7 @@ local M = {}
 M.general = {
   n = {
     [";"] = { ":", "command mode", opts = { nowait = true } },
+    ["<leader>nt"] = { "<cmd> tabnew <CR>", "open new tab" },
   },
 
   i = {
@@ -11,19 +12,19 @@ M.general = {
 
   v = {
     ["<C-c>"] = { "y", "copy" },
-    ["<C-v>"] = { "p", "paste"},
+    ["<C-v>"] = { "p", "paste" },
   },
 
   x = {
     ["<C-c>"] = { "y", "copy" },
-    ["<C-v>"] = { "p", "paste"},
+    ["<C-v>"] = { "p", "paste" },
   },
 }
 
 M.nvimtree = {
   n = {
-    ["ww"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" }
-  }
+    ["ww"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
+  },
 }
 
 M.truzen = {
@@ -66,20 +67,20 @@ M.nvterm = {
 
 M.gitsigns = {
   n = {
-    ["git"] = {"<cmd> Gitsigns diffthis <CR>", "git diff"}
-  }
+    ["git"] = { "<cmd> Gitsigns diffthis <CR>", "git diff" },
+  },
 }
 
 M.trouble = {
   n = {
-    ["err"] = {"<cmd> TroubleToggle <CR>", "trouble toggle" }
-  }
+    ["err"] = { "<cmd> TroubleToggle <CR>", "trouble toggle" },
+  },
 }
 
 M.symbol_outline = {
   n = {
-    ["ee"] = {"<cmd> SymbolsOutline <CR>", "symbol outline" }
-  }
+    ["ee"] = { "<cmd> SymbolsOutline <CR>", "symbol outline" },
+  },
 }
 
 return M

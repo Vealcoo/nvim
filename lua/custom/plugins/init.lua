@@ -113,8 +113,8 @@ return {
   },
 
   ["folke/trouble.nvim"] = {
-    config = function ()
-      require("trouble").setup({
+    config = function()
+      require("trouble").setup {
         height = 6,
         signs = {
           -- icons / text used for a diagnostic
@@ -122,33 +122,33 @@ return {
           warning = "",
           hint = "",
           information = "",
-          other = "﫠"
+          other = "﫠",
         },
-	    auto_open = false, -- automatically open the list when you have diagnostics
-      auto_close = true, -- automatically close the list when you have no diagnostics
-	    auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
-      auto_fold = true, -- automatically fold a file trouble list at creation
-      })
-    end
+        auto_open = false, -- automatically open the list when you have diagnostics
+        auto_close = true, -- automatically close the list when you have no diagnostics
+        auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
+        auto_fold = true, -- automatically fold a file trouble list at creation
+      }
+    end,
   },
 
   ["ray-x/go.nvim"] = {
-    config = function ()
+    config = function()
       require("go").setup()
-    end
+    end,
   },
 
   ["simrat39/symbols-outline.nvim"] = {
-    config = function ()
-      require("symbols-outline").setup({
+    config = function()
+      require("symbols-outline").setup {
         width = 20,
-      })
-    end
+      }
+    end,
   },
 
   ["ellisonleao/glow.nvim"] = {
-    config = function ()
+    config = function()
       require("glow").setup()
-    end
+    end,
   },
 }
