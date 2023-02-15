@@ -119,6 +119,7 @@ M.mason = {
     "sql-formatter",
     "gopls",
     "goimports",
+    "go-debug-adapter"
   },
 }
 

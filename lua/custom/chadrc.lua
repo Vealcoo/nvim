@@ -10,9 +10,9 @@ M.plugins = require "custom.plugins"
 
 M.ui = {
   -- theme stuff
-  theme = "everforest",
+  theme = "gatekeeper",
   transparency = false,
-  theme_toggle = { "everforest", "everforest_light" },
+  theme_toggle = { "gatekeeper", "one_light" },
 
   -- hl_override = require("custom.highlights").overriden_hlgroups,
 }

@@ -83,4 +83,10 @@ M.symbol_outline = {
   },
 }
 
+M.go = {
+  n = {
+    ["test"] = { "<cmd> GoTestFile -v -F <CR>", "go test file" },
+  },
+}
+
 return M

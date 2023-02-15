@@ -138,6 +138,10 @@ return {
     end,
   },
 
+  ["ray-x/guihua.lua"] = {
+
+  },
+
   ["simrat39/symbols-outline.nvim"] = {
     config = function()
       require("symbols-outline").setup {
