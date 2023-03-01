@@ -89,4 +89,10 @@ M.go = {
   },
 }
 
+M.ide = {
+  n = {
+    ["gg"] = { "<cmd> Workspace RightPanelToggle <CR>", "git panel" },
+  },
+}
+
 return M
